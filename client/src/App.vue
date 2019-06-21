@@ -1,7 +1,7 @@
 <template>
     <div class="contentwrapper d-flex flex-column">
         <div class="header">
-            <headermeme v-on:sidebar-state="toggleSidebar"/>
+            <headermeme @sidebar-state="toggleSidebar"/>
         </div>
 
         <div class="maincontent d-flex">
@@ -9,12 +9,16 @@
                 <sidenav v-bind:showSidebarProps="showSidebar"/>
             </div>
 
-            <div class="content" v-bind:class="showSidebar ? 'content-pushed' : 'content-full'">
+            <div v-show="false" class="content" v-bind:class="showSidebar ? 'content-pushed' : 'content-full'">
+                <carousel style="margin: 50px 0"></carousel>
                 <div class="bv-example-row">
                     <b-row align-h="between" class="flex-wrap">
                         <cardmeme v-for="i in 10" :key="i"/>
                     </b-row>
                 </div>
+            </div>
+
+            <div v-show="true" class="content" v-bind:class="showSidebar ? 'content-pushed' : 'content-full'">
             </div>
         </div>
     </div>
@@ -24,7 +28,7 @@
 import headermeme from './components/headermeme.vue';
 import cardmeme from './components/cardmeme.vue';
 import sidenav from './components/sidenav.vue';
-import toast from './components/toast.vue';
+import carousel from './components/carousel.vue';
 
 
 export default {
@@ -37,7 +41,7 @@ export default {
         headermeme,
         cardmeme,
         sidenav,
-        toast
+        carousel
     },
     methods:{
         toggleSidebar(){
