@@ -1,15 +1,15 @@
 const router = require('express').Router()
 const gcs = require('../helpers/google-cloud-storage')
 const userController = require('../controllers/userController')
+const memeController = require('../controllers/memeController')
 
 router.use('/users', require('./userRoutes.js'))
 router.post('/register', userController.register)
 router.post('/login', userController.login)
-
+router.get('/memes', memeController.getMemes)
+router.get('/analyze', userController.analyze)
 // ROUTE TO UPLOAD IMAGE
-router.post('/upload',
-    gcs.multer.single('image'),
-    gcs.sendUploadToGCS,
+router.post('/upload', gcs.multer.single('image'), gcs.sendUploadToGCS,
     (req, res, next) => {
         if (!req.file) {
             res.status(404).json({
@@ -22,6 +22,5 @@ router.post('/upload',
             link: req.file.cloudStoragePublicUrl
         })
     })
-
 
 module.exports = router

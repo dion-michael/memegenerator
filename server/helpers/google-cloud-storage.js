@@ -20,6 +20,7 @@ const sendUploadToGCS = (req, res, next) => {
         console.log(req.file, 'xxxxxxxxxxxxxxxxxxx');
         return next()
     }
+    console.log(req.file);
 
     //FILENAME TO SAVE IN GCS
     const gcsname = Date.now() + req.file.originalname
@@ -45,7 +46,6 @@ const sendUploadToGCS = (req, res, next) => {
             next()
         })
     })
-
     stream.end(req.file.buffer)
 }
 
