@@ -8542,7 +8542,74 @@ if (inBrowser) {
 
 var _default = Vue;
 exports.default = _default;
-},{}],"node_modules/vue-hot-reload-api/dist/index.js":[function(require,module,exports) {
+},{}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"node_modules/vue-hot-reload-api/dist/index.js":[function(require,module,exports) {
 var Vue // late bind
 var version
 var map = Object.create(null)
@@ -8840,34 +8907,40 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $6c4ac0 = exports.default || module.exports;
+        var $fd80ba = exports.default || module.exports;
       
-      if (typeof $6c4ac0 === 'function') {
-        $6c4ac0 = $6c4ac0.options;
+      if (typeof $fd80ba === 'function') {
+        $fd80ba = $fd80ba.options;
       }
     
         /* template */
-        Object.assign($6c4ac0, (function () {
+        Object.assign($fd80ba, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("label", [_vm._v("Meme Maker")]),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        on: {
-          click: function($event) {
-            $event.preventDefault()
-            return _vm.toggleSidebar1($event)
+  return _c(
+    "div",
+    { staticClass: "header-wrapper d-flex align-items-center" },
+    [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { id: "toggleSidebarButton" },
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.toggleSidebar1($event)
+            }
           }
-        }
-      },
-      [_vm._v("Toggle Sidebar")]
-    )
-  ])
+        },
+        [_vm._v("☰")]
+      ),
+      _vm._v(" "),
+      _c("label", [_vm._v("Meme Maker")])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -8876,7 +8949,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: null,
+            _scopeId: "data-v-fd80ba",
             functional: undefined
           };
         })());
@@ -8889,92 +8962,29 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$6c4ac0', $6c4ac0);
+            api.createRecord('$fd80ba', $fd80ba);
           } else {
-            api.reload('$6c4ac0', $6c4ac0);
+            api.reload('$fd80ba', $fd80ba);
           }
         }
 
         
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
       }
     })();
-},{"vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
+},{"_css_loader":"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/cardmeme.vue":[function(require,module,exports) {
 
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"src/components/cardmeme.vue":[function(require,module,exports) {
-
-        var $e61861 = exports.default || module.exports;
+        var $1aaa3f = exports.default || module.exports;
       
-      if (typeof $e61861 === 'function') {
-        $e61861 = $e61861.options;
+      if (typeof $1aaa3f === 'function') {
+        $1aaa3f = $1aaa3f.options;
       }
     
         /* template */
-        Object.assign($e61861, (function () {
+        Object.assign($1aaa3f, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -8985,13 +8995,12 @@ module.exports = reloadCSS;
       _c(
         "b-card",
         {
-          staticClass: "mb-2",
-          staticStyle: { "max-width": "20rem" },
+          staticClass: "mb-2 card",
+          staticStyle: { "max-width": "20rem", margin: "0" },
           attrs: {
             title: "Card Title",
             "img-src": "https://picsum.photos/600/300/?image=25",
             "img-alt": "Image",
-            "img-top": "",
             tag: "article"
           }
         },
@@ -9019,7 +9028,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-e61861",
+            _scopeId: null,
             functional: undefined
           };
         })());
@@ -9032,20 +9041,16 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$e61861', $e61861);
+            api.createRecord('$1aaa3f', $1aaa3f);
           } else {
-            api.reload('$e61861', $e61861);
+            api.reload('$1aaa3f', $1aaa3f);
           }
         }
 
         
-        var reloadCSS = require('_css_loader');
-        module.hot.dispose(reloadCSS);
-        module.hot.accept(reloadCSS);
-      
       }
     })();
-},{"_css_loader":"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/sidenav.vue":[function(require,module,exports) {
+},{"_css_loader":"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/sidenav.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9080,14 +9085,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $26eb40 = exports.default || module.exports;
+        var $6f8673 = exports.default || module.exports;
       
-      if (typeof $26eb40 === 'function') {
-        $26eb40 = $26eb40.options;
+      if (typeof $6f8673 === 'function') {
+        $6f8673 = $6f8673.options;
       }
     
         /* template */
-        Object.assign($26eb40, (function () {
+        Object.assign($6f8673, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -9211,9 +9216,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$26eb40', $26eb40);
+            api.createRecord('$6f8673', $6f8673);
           } else {
-            api.reload('$26eb40', $26eb40);
+            api.reload('$6f8673', $6f8673);
           }
         }
 
@@ -9224,16 +9229,16 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/toast.vue":[function(require,module,exports) {
+},{"_css_loader":"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/toast.vue":[function(require,module,exports) {
 
-        var $889894 = exports.default || module.exports;
+        var $185996 = exports.default || module.exports;
       
-      if (typeof $889894 === 'function') {
-        $889894 = $889894.options;
+      if (typeof $185996 === 'function') {
+        $185996 = $185996.options;
       }
     
         /* template */
-        Object.assign($889894, (function () {
+        Object.assign($185996, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -9291,9 +9296,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$889894', $889894);
+            api.createRecord('$185996', $185996);
           } else {
-            api.reload('$889894', $889894);
+            api.reload('$185996', $185996);
           }
         }
 
@@ -9361,14 +9366,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $6ecc38 = exports.default || module.exports;
+        var $209927 = exports.default || module.exports;
       
-      if (typeof $6ecc38 === 'function') {
-        $6ecc38 = $6ecc38.options;
+      if (typeof $209927 === 'function') {
+        $209927 = $209927.options;
       }
     
         /* template */
-        Object.assign($6ecc38, (function () {
+        Object.assign($209927, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -9436,9 +9441,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$6ecc38', $6ecc38);
+            api.createRecord('$209927', $209927);
           } else {
-            api.reload('$6ecc38', $6ecc38);
+            api.reload('$209927', $209927);
           }
         }
 
@@ -9449,7 +9454,7 @@ render._withStripped = true
       
       }
     })();
-},{"./components/headermeme.vue":"src/components/headermeme.vue","./components/cardmeme.vue":"src/components/cardmeme.vue","./components/sidenav.vue":"src/components/sidenav.vue","./components/toast.vue":"src/components/toast.vue","_css_loader":"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"node_modules/bootstrap-vue/esm/utils/vue.js":[function(require,module,exports) {
+},{"./components/headermeme.vue":"src/components/headermeme.vue","./components/cardmeme.vue":"src/components/cardmeme.vue","./components/sidenav.vue":"src/components/sidenav.vue","./components/toast.vue":"src/components/toast.vue","_css_loader":"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"node_modules/bootstrap-vue/esm/utils/vue.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9469,7 +9474,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 var _default = _vue.default;
 exports.default = _default;
-},{"vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/node_modules/process/browser.js":[function(require,module,exports) {
+},{"vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
@@ -9769,7 +9774,7 @@ var getNoWarn = function getNoWarn() {
 };
 
 exports.getNoWarn = getNoWarn;
-},{"process":"../../../../../usr/local/lib/node_modules/parcel-bundler/node_modules/process/browser.js"}],"node_modules/bootstrap-vue/esm/utils/warn.js":[function(require,module,exports) {
+},{"process":"../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"node_modules/bootstrap-vue/esm/utils/warn.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43071,13 +43076,13 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/bootstrap-vue/dist/bootstrap-vue.css":[function(require,module,exports) {
+},{"_css_loader":"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/bootstrap-vue/dist/bootstrap-vue.css":[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"_css_loader":"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/main.js":[function(require,module,exports) {
+},{"_css_loader":"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/main.js":[function(require,module,exports) {
 "use strict";
 
 var _vue = _interopRequireDefault(require("vue"));
@@ -43095,7 +43100,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _vue.default.use(_bootstrapVue.default);
 
 new _vue.default(_App.default).$mount('#app');
-},{"vue":"node_modules/vue/dist/vue.runtime.esm.js","./App.vue":"src/App.vue","bootstrap-vue":"node_modules/bootstrap-vue/esm/index.js","bootstrap/dist/css/bootstrap.css":"node_modules/bootstrap/dist/css/bootstrap.css","bootstrap-vue/dist/bootstrap-vue.css":"node_modules/bootstrap-vue/dist/bootstrap-vue.css"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"vue":"node_modules/vue/dist/vue.runtime.esm.js","./App.vue":"src/App.vue","bootstrap-vue":"node_modules/bootstrap-vue/esm/index.js","bootstrap/dist/css/bootstrap.css":"node_modules/bootstrap/dist/css/bootstrap.css","bootstrap-vue/dist/bootstrap-vue.css":"node_modules/bootstrap-vue/dist/bootstrap-vue.css"}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -43123,7 +43128,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58345" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62562" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -43298,5 +43303,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/main.js"], null)
+},{}]},{},["../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/main.js"], null)
 //# sourceMappingURL=/main.1e43358e.js.map
