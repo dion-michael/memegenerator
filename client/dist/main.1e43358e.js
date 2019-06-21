@@ -9224,16 +9224,86 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/toast.vue":[function(require,module,exports) {
+},{"_css_loader":"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/carousel.vue":[function(require,module,exports) {
+"use strict";
 
-        var $889894 = exports.default || module.exports;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  data: function data() {
+    return {
+      slide: 0,
+      sliding: null
+    };
+  },
+  methods: {
+    onSlideStart: function onSlideStart(slide) {
+      this.sliding = true;
+    },
+    onSlideEnd: function onSlideEnd(slide) {
+      this.sliding = false;
+    }
+  }
+};
+exports.default = _default;
+        var $6f502b = exports.default || module.exports;
       
-      if (typeof $889894 === 'function') {
-        $889894 = $889894.options;
+      if (typeof $6f502b === 'function') {
+        $6f502b = $6f502b.options;
       }
     
         /* template */
-        Object.assign($889894, (function () {
+        Object.assign($6f502b, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -9242,30 +9312,78 @@ render._withStripped = true
     "div",
     [
       _c(
-        "b-button",
+        "b-carousel",
         {
-          staticClass: "mb-2",
-          attrs: { variant: "primary" },
-          on: {
-            click: function($event) {
-              return _vm.$bvToast.show("example-toast")
-            }
-          }
-        },
-        [_vm._v("\n      Show toast\n    ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "b-toast",
-        {
+          staticStyle: { "text-shadow": "1px 1px 2px #333" },
           attrs: {
-            id: "example-toast",
-            title: "BootstrapVue",
-            static: "",
-            "no-auto-hide": ""
+            id: "carousel-1",
+            interval: 4000,
+            controls: "",
+            indicators: "",
+            background: "#ababab",
+            "img-width": "1024",
+            "img-height": "480"
+          },
+          on: {
+            "sliding-start": _vm.onSlideStart,
+            "sliding-end": _vm.onSlideEnd
+          },
+          model: {
+            value: _vm.slide,
+            callback: function($$v) {
+              _vm.slide = $$v
+            },
+            expression: "slide"
           }
         },
-        [_vm._v("\n      Hello, world! This is a toast message.\n    ")]
+        [
+          _c("b-carousel-slide", {
+            attrs: {
+              caption: "Welcome to Meme Generator",
+              text: "Sebuah program yang pernah dikerjakan",
+              "img-src": "https://picsum.photos/1024/480/?image=52"
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "b-carousel-slide",
+            {
+              attrs: { "img-src": "https://picsum.photos/1024/480/?image=54" }
+            },
+            [_c("h1", [_vm._v("Dengan susah payah dan tangisan hati")])]
+          ),
+          _vm._v(" "),
+          _c(
+            "b-carousel-slide",
+            {
+              attrs: { "img-src": "https://picsum.photos/1024/480/?image=58" }
+            },
+            [_c("h1", [_vm._v("agar bisa dipakai orang")])]
+          ),
+          _vm._v(" "),
+          _c(
+            "b-carousel-slide",
+            {
+              attrs: {
+                caption: "Cintai meme indonesia, cintai karya anak bangsa"
+              }
+            },
+            [
+              _c("img", {
+                staticClass: "d-block img-fluid w-100",
+                attrs: {
+                  slot: "img",
+                  width: "1024",
+                  height: "480",
+                  src: "https://picsum.photos/1024/480/?image=55",
+                  alt: "image slot"
+                },
+                slot: "img"
+              })
+            ]
+          )
+        ],
+        1
       )
     ],
     1
@@ -9291,16 +9409,16 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$889894', $889894);
+            api.createRecord('$6f502b', $6f502b);
           } else {
-            api.reload('$889894', $889894);
+            api.reload('$6f502b', $6f502b);
           }
         }
 
         
       }
     })();
-},{"vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/App.vue":[function(require,module,exports) {
+},{"_css_loader":"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/App.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9314,10 +9432,14 @@ var _cardmeme = _interopRequireDefault(require("./components/cardmeme.vue"));
 
 var _sidenav = _interopRequireDefault(require("./components/sidenav.vue"));
 
-var _toast = _interopRequireDefault(require("./components/toast.vue"));
+var _carousel = _interopRequireDefault(require("./components/carousel.vue"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -9349,7 +9471,7 @@ var _default = {
     headermeme: _headermeme.default,
     cardmeme: _cardmeme.default,
     sidenav: _sidenav.default,
-    toast: _toast.default
+    carousel: _carousel.default
   },
   methods: {
     toggleSidebar: function toggleSidebar() {
@@ -9396,6 +9518,8 @@ exports.default = _default;
           class: _vm.showSidebar ? "content-pushed" : "content-full"
         },
         [
+          _c("carousel", { staticStyle: { margin: "50px 0" } }),
+          _vm._v(" "),
           _c(
             "div",
             { staticClass: "bv-example-row" },
@@ -9411,8 +9535,17 @@ exports.default = _default;
             ],
             1
           )
-        ]
-      )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", {
+        directives: [
+          { name: "show", rawName: "v-show", value: false, expression: "false" }
+        ],
+        staticClass: "content",
+        class: _vm.showSidebar ? "content-pushed" : "content-full"
+      })
     ])
   ])
 }
@@ -9449,7 +9582,7 @@ render._withStripped = true
       
       }
     })();
-},{"./components/headermeme.vue":"src/components/headermeme.vue","./components/cardmeme.vue":"src/components/cardmeme.vue","./components/sidenav.vue":"src/components/sidenav.vue","./components/toast.vue":"src/components/toast.vue","_css_loader":"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"node_modules/bootstrap-vue/esm/utils/vue.js":[function(require,module,exports) {
+},{"./components/headermeme.vue":"src/components/headermeme.vue","./components/cardmeme.vue":"src/components/cardmeme.vue","./components/sidenav.vue":"src/components/sidenav.vue","./components/carousel.vue":"src/components/carousel.vue","_css_loader":"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"node_modules/bootstrap-vue/esm/utils/vue.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
