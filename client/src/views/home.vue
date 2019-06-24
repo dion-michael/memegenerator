@@ -1,5 +1,13 @@
 <template>
   <div class="container">
+    <div class="container">
+      <b-field style="margin-bottom: 20px;">
+        <b-input v-model="search" placeholder="Search..." expanded></b-input>
+        <p class="control">
+          <button class="button is-primary">Search</button>
+        </p>
+      </b-field>
+    </div>
     <div class="columns is-vcentered">
       <div class="column">
         <div id="canvascon">
@@ -11,7 +19,7 @@
     </div>
     <transition name="slide-fade">
       <div v-if="show" class="columns is-multiline">
-        <div class="column is-3" v-for="meme in memes" :key="meme.id">
+        <div class="column is-3" v-for="meme in filteredPosts" :key="meme.id">
           <card :meme="meme" @selected="setImg"/>
         </div>
       </div>
@@ -35,7 +43,8 @@ export default {
       selected: "",
       imgurl: "",
       fabric: "",
-      canvas: ""
+      canvas: "",
+      search: ""
     };
   },
   methods: {
@@ -207,6 +216,16 @@ export default {
   },
   mounted() {
     this.renderCanvas();
+  },
+  computed: {
+    filteredPosts() {
+      console.log(this.search);
+      let filter = this.memes.filter(memes => {
+        return memes.name.toLowerCase().includes(this.search.toLowerCase());
+      });
+      if (filter.length === 0) return this.memes;
+      else return filter;
+    }
   }
 };
 </script>

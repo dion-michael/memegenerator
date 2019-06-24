@@ -48896,6 +48896,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   components: {
     card: _card.default
@@ -48907,7 +48915,8 @@ var _default = {
       selected: "",
       imgurl: "",
       fabric: "",
-      canvas: ""
+      canvas: "",
+      search: ""
     };
   },
   methods: {
@@ -49083,6 +49092,17 @@ var _default = {
   },
   mounted: function mounted() {
     this.renderCanvas();
+  },
+  computed: {
+    filteredPosts: function filteredPosts() {
+      var _this4 = this;
+
+      console.log(this.search);
+      var filter = this.memes.filter(function (memes) {
+        return memes.name.toLowerCase().includes(_this4.search.toLowerCase());
+      });
+      if (filter.length === 0) return this.memes;else return filter;
+    }
   }
 };
 exports.default = _default;
@@ -49102,6 +49122,37 @@ exports.default = _default;
     "div",
     { staticClass: "container" },
     [
+      _c(
+        "div",
+        { staticClass: "container" },
+        [
+          _c(
+            "b-field",
+            { staticStyle: { "margin-bottom": "20px" } },
+            [
+              _c("b-input", {
+                attrs: { placeholder: "Search...", expanded: "" },
+                model: {
+                  value: _vm.search,
+                  callback: function($$v) {
+                    _vm.search = $$v
+                  },
+                  expression: "search"
+                }
+              }),
+              _vm._v(" "),
+              _c("p", { staticClass: "control" }, [
+                _c("button", { staticClass: "button is-primary" }, [
+                  _vm._v("Search")
+                ])
+              ])
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
       _c("div", { staticClass: "columns is-vcentered" }, [
         _c("div", { staticClass: "column" }, [
           _vm._m(0),
@@ -49117,7 +49168,7 @@ exports.default = _default;
           ? _c(
               "div",
               { staticClass: "columns is-multiline" },
-              _vm._l(_vm.memes, function(meme) {
+              _vm._l(_vm.filteredPosts, function(meme) {
                 return _c(
                   "div",
                   { key: meme.id, staticClass: "column is-3" },
@@ -49192,7 +49243,7 @@ render._withStripped = true
       
       }
     })();
-},{"../components/card.vue":"src/components/card.vue","axios":"node_modules/axios/index.js","fabric":"node_modules/fabric/dist/fabric.js","sweetalert2":"node_modules/sweetalert2/dist/sweetalert2.all.js","./../fonts/impact.ttf":[["impact.789d7090.ttf","src/fonts/impact.ttf"],"src/fonts/impact.ttf"],"_css_loader":"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/router.js":[function(require,module,exports) {
+},{"../components/card.vue":"src/components/card.vue","axios":"node_modules/axios/index.js","fabric":"node_modules/fabric/dist/fabric.js","sweetalert2":"node_modules/sweetalert2/dist/sweetalert2.all.js","_css_loader":"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","./../fonts/impact.ttf":[["impact.789d7090.ttf","src/fonts/impact.ttf"],"src/fonts/impact.ttf"],"vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/router.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -65832,7 +65883,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42995" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38559" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
